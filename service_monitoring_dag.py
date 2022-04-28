@@ -24,10 +24,11 @@ with DAG(
         namespace='default',
         name="service_monitoring",
         image="noeljohnk/kmd-nextgeneration:service-monitoring",
-        cmds=["bash", "-cx"],
-        arguments=["echo", "10"],
-        labels={"foo": "bar"},
+        #cmds=["bash", "-cx"],
+        #arguments=["echo", "10"],
+        #labels={"foo": "bar"},
         task_id="service_monitoring",
+        #do_xcom_push=True,
         get_logs=True,
         dag=dag
     )
