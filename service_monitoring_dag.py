@@ -28,7 +28,6 @@ with DAG(
         arguments=["echo", "10"],
         labels={"foo": "bar"},
         task_id="service_monitoring",
-        do_xcom_push=True,
         get_logs=True,
         dag=dag
     )
