@@ -1,5 +1,5 @@
 import datetime
-import pendulum
+#import pendulum
 
 from airflow import DAG
 from airflow.operators.dummy import DummyOperator
@@ -8,7 +8,8 @@ from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import Kubernete
 with DAG(
         dag_id='monitoring_dag',
         schedule_interval='* * * * *',
-        start_date=pendulum.datetime(2022, 4, 29, tz="UTC"),
+        #start_date=pendulum.datetime(2022, 4, 29, tz="UTC"),
+        start_date=datetime.now(),
         dagrun_timeout=datetime.timedelta(minutes=60),
 ) as dag:
 
