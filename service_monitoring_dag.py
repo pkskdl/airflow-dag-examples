@@ -7,8 +7,8 @@ from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import Kubernete
 
 with DAG(
         dag_id='monitoring_dag',
-        schedule_interval='0 0 * * *',
-        start_date=pendulum.datetime(2022, 4, 28, tz="UTC"),
+        schedule_interval='* * * * *',
+        start_date=pendulum.datetime(2022, 4, 29, tz="UTC"),
         dagrun_timeout=datetime.timedelta(minutes=60),
 ) as dag:
 
@@ -30,6 +30,7 @@ with DAG(
         task_id="service_monitoring",
         #do_xcom_push=True,
         get_logs=True,
+        image_pull_policy='Always',
         dag=dag
     )
 
