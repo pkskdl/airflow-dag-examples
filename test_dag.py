@@ -23,7 +23,7 @@ with DAG(
 
     task_1 = BashOperator(
         task_id='task_1',
-        bash_command='echo 1',
+        bash_command='echo 2',
     )
 
 start >> task_1 >> end
