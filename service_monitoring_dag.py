@@ -22,7 +22,7 @@ with DAG(
     )
 
     service_monitoring_task = KubernetesPodOperator(
-        namespace='service_monitoring',
+        namespace='service-monitoring',
         name="service_monitoring",
         image="noeljohnk/kmd-newgeneration:service-monitoring",
         #cmds=["bash", "-cx"],
