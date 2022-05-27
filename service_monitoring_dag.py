@@ -8,11 +8,10 @@ from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import Kubernete
 with DAG(
         dag_id='monitoring_dag',
         schedule_interval='* * * * *',
-        start_date=pendulum.datetime(2022, 5, 20, tz="UTC"),
-        #start_date=datetime.datetime.now(),
+        # start_date=pendulum.datetime(2022, 5, 20, tz="UTC"),
+        start_date=datetime.datetime.now() - datetime.timedelta(days=1),
         dagrun_timeout=datetime.timedelta(minutes=60),
 ) as dag:
-
     start = DummyOperator(
         task_id='start',
     )
@@ -25,11 +24,11 @@ with DAG(
         namespace='service-monitoring',
         name="service_monitoring",
         image="noeljohnk/kmd-newgeneration:service-monitoring",
-        #cmds=["bash", "-cx"],
-        #arguments=["echo", "10"],
-        #labels={"foo": "bar"},
+        # cmds=["bash", "-cx"],
+        # arguments=["echo", "10"],
+        # labels={"foo": "bar"},
         task_id="service_monitoring",
-        #do_xcom_push=True,
+        # do_xcom_push=True,
         get_logs=True,
         image_pull_policy='Always',
         dag=dag
