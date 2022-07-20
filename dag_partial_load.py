@@ -3,7 +3,7 @@ import datetime
 from airflow import DAG
 from airflow.operators.dummy import DummyOperator
 from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import KubernetesPodOperator
-from airflow.contrib.kubernetes.volume import Volume
+#from airflow.contrib.kubernetes.volume import Volume
 from airflow.contrib.kubernetes.volume_mount import VolumeMount
 
 version = "0.1.0"
@@ -24,19 +24,19 @@ with DAG(
         task_id='end',
     )
 
-    volume_mount = VolumeMount('test-volume',
-                               mount_path='/root/mount_file',
-                               sub_path=None,
-                               read_only=True)
+    # volume_mount = VolumeMount('test-volume',
+                               # mount_path='/root/mount_file',
+                               # sub_path=None,
+                               # read_only=True)
 
-    volume_config = {
-        'persistentVolumeClaim':
-            {
-                'claimName': 'test-volume'
-            }
-    }
+    # volume_config = {
+        # 'persistentVolumeClaim':
+            # {
+                # 'claimName': 'test-volume'
+            # }
+    # }
     
-    volume = Volume(name='test-volume', configs=volume_config)
+    #volume = Volume(name='test-volume', configs=volume_config)
 
     ftp_partial = KubernetesPodOperator(
         namespace='service-monitoring',
@@ -50,9 +50,9 @@ with DAG(
         get_logs=True,
         image_pull_policy='Always',
         # List of Volume objects to pass to the Pod.
-        volumes=[volume],
+        #volumes=[volume],
         # List of VolumeMount objects to pass to the Pod.
-        volume_mounts=[volume_mount],
+        #volume_mounts=[volume_mount],
         dag=dag
     )
 
