@@ -4,7 +4,7 @@ from airflow import DAG
 from airflow.operators.dummy import DummyOperator
 from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import KubernetesPodOperator
 #from airflow.contrib.kubernetes.volume import Volume
-from airflow.contrib.kubernetes.volume_mount import VolumeMount
+#from airflow.contrib.kubernetes.volume_mount import VolumeMount
 
 version = "0.1.0"
 
