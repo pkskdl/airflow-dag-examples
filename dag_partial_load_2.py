@@ -38,14 +38,14 @@ with DAG(
     
     #volume = Volume(name='test-volume', configs=volume_config)
 
-    ftp_partial = KubernetesPodOperator(
+    ftp_partial2 = KubernetesPodOperator(
         namespace='service-monitoring',
         name="ftp_partial",
         image="priyesh2020/dagtest2:latest",
         #cmds=["python dagtest.py"],
-        arguments=['-fd=01/05/22', '-td=30/07/22','-t jsontopic','-s=partial_load','-l=Warn','-b=localhost','-a=aes256'],
+        arguments=['-fd=01/05/22', '-td=30/07/22','-t=jsontopic','-s=partial_load','-l=Warn','-b=localhost','-a=aes256'],
         # labels={"foo": "bar"},
-        task_id="ftp_partial",
+        task_id="ftp_partial2",
         # do_xcom_push=True,
         get_logs=True,
         image_pull_policy='Always',
@@ -56,5 +56,5 @@ with DAG(
         dag=dag
     )
 
-start >> ftp_partial >> end
+start >> ftp_partial2 >> end
 
