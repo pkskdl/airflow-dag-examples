@@ -42,7 +42,7 @@ with DAG(
         namespace='service-monitoring',
         name="ftp_partial",
         image="priyesh2020/dagtest1:latest",
-        #cmds=["python dagtest.py"],
+        cmds=["python dagtest.py"],
         arguments=['-fd=01/05/22', '-td=30/07/22','-t jsontopic','-s=partial_load','-l=Warn','-b=localhost','-a=aes256'],
         # labels={"foo": "bar"},
         task_id="ftp_partial",
