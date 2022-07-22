@@ -55,5 +55,5 @@ with DAG(
         dag=dag
     )
 
-start >> ftp_partial2 >> end
+start >> end
 
