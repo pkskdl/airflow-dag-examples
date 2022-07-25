@@ -51,7 +51,7 @@ with DAG(
         name="ftp_fullload",
         image="priyesh2020/dagtest2:latest",
         #cmds=["python dagtest.py"],
-        #arguments=['-t=jsontopic','-s=full_load','-l=Warn','-b=localhost','-a=aes256'],
+        arguments=['-t'=default_args['-t'],'-s'=default_args['-s'],'-l'=default_args['-l'],'-b'=default_args['-b'],'-a'=default_args['-t']],
         # labels={"foo": "bar"},
         task_id="ftp_fullload",
         # do_xcom_push=True,
