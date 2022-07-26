@@ -8,20 +8,18 @@ from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import Kubernete
 
 version = "0.1.0"
 
-default_args = {
-    '-t': 'jsontopic',
-    '-s': 'full_load',
-    '-l': 'Warn',
-    '-b': 'localhost',
-    '-a': 'aes256'
-    }
+topic='jsontopic'
+load_type='full_load'
+log_type='Warn'
+broker='localhost:29092'
+encryption_algorithm='aes256'
 with DAG(
-        dag_id='ftp_full_load',
+        dag_id='ftp_full_load2',
         schedule_interval=None,
         # start_date=pendulum.datetime(2022, 5, 20, tz="UTC"),
          start_date=datetime.datetime.now() - datetime.timedelta(days=1),
          dagrun_timeout=datetime.timedelta(minutes=60),
-         default_args=default_args
+         #default_args=default_args
 ) as dag:
     start = DummyOperator(
         task_id='start',
@@ -46,12 +44,12 @@ with DAG(
     
     #volume = Volume(name='test-volume', configs=volume_config)
 
-    ftp_fullload = KubernetesPodOperator(
+    ftp_fullload2 = KubernetesPodOperator(
         namespace='service-monitoring',
         name="ftp_fullload",
         image="priyesh2020/dagtest2:latest",
         #cmds=["python dagtest.py"],
-        arguments=['-t'=default_args['-t'],'-s'=default_args['-s'],'-l'=default_args['-l'],'-b'=default_args['-b'],'-a'=default_args['-t']],
+        arguments=[f'-t={topic}',f'-s={load_type}',f'-l={log_type}',f'-b={broker}',f'-a={encryption_algorithm}'],
         # labels={"foo": "bar"},
         task_id="ftp_fullload",
         # do_xcom_push=True,
@@ -64,4 +62,4 @@ with DAG(
         dag=dag
     )
 
-start >> ftp_fullload >> end
+start >> ftp_fullload2 >> end
