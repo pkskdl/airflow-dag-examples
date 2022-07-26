@@ -29,7 +29,7 @@ with DAG(
         namespace='service-monitoring',
         name="ftp_fullload",
         image="priyesh2020/dagtest2:latest",
-        arguments=['-t=jsontopic', '-s=full_load', '-l=Warn', '-b=localhost:29092', '-a=aes256'],
+        arguments=['-t=jsontopic','-s=full_load','-l=Warn','-b=localhost:29092','-a=aes256'],
         task_id="ftp_fullload",
         get_logs=True,
         image_pull_policy='Always',
