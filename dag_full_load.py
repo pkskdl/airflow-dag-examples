@@ -5,11 +5,11 @@ from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import Kubernete
 
 version = "0.1.0"
 
-topic='jsontopic'
-load_type='full_load'
-log_type='Warn'
-broker='localhost:29092'
-encryption_algorithm='aes256'
+#topic='jsontopic'
+#load_type='full_load'
+#log_type='Warn'
+#broker='localhost:29092'
+#encryption_algorithm='aes256'
 with DAG(
         dag_id='ftp_full_load',
         schedule_interval=None,
@@ -29,7 +29,7 @@ with DAG(
         namespace='service-monitoring',
         name="ftp_fullload",
         image="priyesh2020/dagtest2:latest",
-        arguments=[f'-t={topic}',f'-s={load_type}',f'-l={log_type}',f'-b={broker}',f'-a={encryption_algorithm}'],
+        arguments=['-t=jsontopic', '-s=full_load', '-l=Warn', '-b=localhost:29092', '-a=aes256'],
         task_id="ftp_fullload",
         get_logs=True,
         image_pull_policy='Always',
