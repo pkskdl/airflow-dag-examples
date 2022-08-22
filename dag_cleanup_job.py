@@ -22,7 +22,7 @@ with DAG(
         namespace='service-monitoring',
         name="ftp_cleanup1",
         image="priyesh2020/cleanup:latest",
-        arguments=['--ho=ipaddress','-u=username','-p=pswd','-dp=/test'],
+        arguments=['-ho=ipaddress','-u=username','-p=pswd','-dp=/test'],
         task_id="ftp_cleanup1",
         get_logs=True,
         image_pull_policy='Always',
